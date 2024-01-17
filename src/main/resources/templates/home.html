@@ -19,17 +19,24 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     </p>
     </hr>
 
-    <hr>
-    <p>
-        <a th:href="@{/leaders}">Leadership Meeting</a>
-        (Only for Managar peeps)
-    </p>
-    </hr>
+    <div sec:authorize="hasRole('MANAGER')">
+        <hr>
+        <p>
+            <a th:href="@{/leaders}">Leadership Meeting</a>
+            (Only for Managar peeps)
+        </p>
+        </hr>
+    </div>
 
+    <div sec:authorize="hasRole('ADMIN')">
     <hr>
-        <a th:href="@{/systems}">IT Systems Meeting</a>
-        (Only for Admin peeps)
+        <p>
+            <a th:href="@{/systems}">IT Systems Meeting</a>
+            (Only for Admin peeps)
+        </p>
     </hr>
+    </div>
+
 
 
     <form action="#" th:action="@{/logout}" method="POST">
